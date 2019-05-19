@@ -1,15 +1,15 @@
 # PASSWD: zhangguanzhang
 ansible_ssh_port: 22
-ansible_ssh_pass: zhangguanzhang
+ansible_ssh_pass: September9
 
-ntp_domain1: 'cn.pool.ntp.org'
-ntp_domain2: 's1b.time.edu.cn'
-TimeZone: 'Asia/Shanghai'
+ntp_domain1: 'ca.pool.ntp.org'
+ntp_domain2: 'us.pool.ntp.org'
+TimeZone: 'America/Toronto'
 kernel: true
 
-VIP: '172.16.1.240'
+VIP: '192.168.1.240'
 VIP_NETMASK: 24
-INTERFACE_NAME: eth0
+INTERFACE_NAME: enp0s3
 
 # 后续考虑扩etcd或者master的话可以填写下面预留ip写在证书里
 #certSANs:
@@ -24,8 +24,8 @@ docker:
   dataDir: /var/lib/docker
   execOpts:
     - 'native.cgroupdriver=systemd'
-  registryMirrors:
-    - https://fz5yth0r.mirror.aliyuncs.com
+  # registryMirrors:
+  #   - https://fz5yth0r.mirror.aliyuncs.com
 #  insecureRegistries:
 #    - 100.64.2.52:9999
 #    - 100.64.1.31:9999
@@ -54,7 +54,7 @@ nodeStatusUpdate: Medium
 
 
 CLUSTER_NAME: 'kubernetes'
-KUBE_VERSION: 'v1.13.5'
+KUBE_VERSION: 'v1.14.2'
 ETCD_version: 'v3.2.24'
 
 Net_Choose: flannel  # 暂时只有flannel,后续增加其他的

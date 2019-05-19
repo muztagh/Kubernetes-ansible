@@ -1,16 +1,17 @@
 [master]
-172.16.1.3 hostname=k8s-m1 nodename=k8s-m1
-172.16.1.4 hostname=k8s-m2 nodename=k8s-m2
-172.16.1.5 hostname=k8s-m3 nodename=k8s-m3
+192.168.1.220 hostname=k8s-m1 nodename=k8s-m1
+192.168.1.221 hostname=k8s-m2 nodename=k8s-m2
+192.168.1.222 hostname=k8s-m3 nodename=k8s-m3
 
 [node]
-172.16.1.6 hostname=k8s-n1 nodename=k8s-n1
-172.16.1.7 hostname=k8s-n2 nodename=k8s-n2
+192.168.1.230 hostname=k8s-n1 nodename=k8s-n1
+192.168.1.231 hostname=k8s-n2 nodename=k8s-n2
+192.168.1.232 hostname=k8s-n3 nodename=k8s-n3
 
 [etcd]
-172.16.1.3 clusterName=k8s-m1
-172.16.1.4 clusterName=k8s-m2
-172.16.1.5 clusterName=k8s-m3
+192.168.1.220 clusterName=k8s-m1
+192.168.1.221 clusterName=k8s-m2
+192.168.1.222 clusterName=k8s-m3
 # etcd初次集群需要独一名字,如果不设置clusterName默认取值hostname,所以上面和下面可以不设置clusterName
 # etcd单独机器跑的话请参照下面配置,下面俩变量最少有一个
 #172.16.1.11 clusterName=k8s-m1 hostname=etcd-01
