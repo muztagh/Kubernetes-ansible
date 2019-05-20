@@ -1,22 +1,27 @@
 #!/bin/bash
-:  ${KUBE_VERSION:=v1.13.5} ${CNI_VERSION:=v0.7.5} ${ETCD_version:=v3.2.24} ${FLANNEL_version:=v0.11.0}
+:  ${KUBE_VERSION:=v1.14.2} ${CNI_VERSION:=v0.7.5} ${ETCD_version:=v3.2.24} ${FLANNEL_version:=v0.11.0}
 :  ${CNI_URL:=https://github.com/containernetworking/plugins/releases/download}
 
 function down_kube(){
-    docker pull zhangguanzhang/k8s_bin:$KUBE_VERSION-full
-    docker run --rm -d --name temp zhangguanzhang/k8s_bin:$KUBE_VERSION-full sleep 10
-    docker cp temp:/kubernetes-server-linux-amd64.tar.gz .
+    # docker pull zhangguanzhang/k8s_bin:$KUBE_VERSION-full
+    # docker run --rm -d --name temp zhangguanzhang/k8s_bin:$KUBE_VERSION-full sleep 10
+    # docker cp temp:/kubernetes-server-linux-amd64.tar.gz .
+    # tar -zxvf kubernetes-server-linux-amd64.tar.gz  --strip-components=3 -C /usr/local/bin kubernetes/server/bin/kube{let,ctl,-apiserver,-controller-manager,-scheduler,-proxy}
+
+    curl  https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/kubernetes-server-linux-amd64.tar.gz > kubernetes-server-linux-amd64.tar.gz
     tar -zxvf kubernetes-server-linux-amd64.tar.gz  --strip-components=3 -C /usr/local/bin kubernetes/server/bin/kube{let,ctl,-apiserver,-controller-manager,-scheduler,-proxy}
 }
 
 function down_etcd(){
-#    docker pull quay.io/coreos/etcd:$ETCD_version
-    docker pull zhangguanzhang/quay.io.coreos.etcd:$ETCD_version
-    docker tag zhangguanzhang/quay.io.coreos.etcd:$ETCD_version quay.io/coreos/etcd:$ETCD_version
-    docker rmi zhangguanzhang/quay.io.coreos.etcd:$ETCD_version
-    docker run --rm -d --name temp quay.io/coreos/etcd:$ETCD_version sleep 10
-    docker cp temp:/usr/local/bin/etcd /usr/local/bin
-    docker cp temp:/usr/local/bin/etcdctl /usr/local/bin
+    # docker pull zhangguanzhang/quay.io.coreos.etcd:$ETCD_version
+    # docker tag zhangguanzhang/quay.io.coreos.etcd:$ETCD_version quay.io/coreos/etcd:$ETCD_version
+    # docker rmi zhangguanzhang/quay.io.coreos.etcd:$ETCD_version
+    # docker run --rm -d --name temp quay.io/coreos/etcd:$ETCD_version sleep 10
+    # docker cp temp:/usr/local/bin/etcd /usr/local/bin
+    # docker cp temp:/usr/local/bin/etcdctl /usr/local/bin
+
+    wget https://github.com/etcd-io/etcd/releases/download/${ETCD_version}/etcd-${ETCD_version}-linux-amd64.tar.gz
+    tar -zxvf etcd-${ETCD_version}-linux-amd64.tar.gz --strip-components=1 -C /usr/local/bin etcd-${ETCD_version}-linux-amd64/etcd{,ctl}
 }
 
 function down_flanneld(){
