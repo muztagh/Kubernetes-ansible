@@ -1,0 +1,6 @@
+- name: install Helm
+  include_tasks: helm.yml
+# ansible-playbood addon.yml --extra-vars "action=helm"
+- include_tasks: helm.yml
+  when: action == 'helm'
+
