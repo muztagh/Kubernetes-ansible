@@ -1,4 +1,4 @@
 # ansible-playbood addon.yml --extra-vars "action=helm"
-- include_tasks: helm.yml
-  when: action == 'helm'
+- include_tasks: "{{ action }}.yml"
+  when: action is defined
 
