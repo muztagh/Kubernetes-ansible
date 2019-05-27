@@ -1,5 +1,4 @@
 - name: Load helm include_tasks
   include_tasks: 
     file: helm.yml
-  when: action is defined  
-
+  when: action is defined
