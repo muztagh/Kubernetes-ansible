@@ -6,6 +6,6 @@
 
 - name: Install Helm
   shell: | 
-    curl  https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-linux-arm64.tar.gz > /var/tmp/helm.tar.gz
+    curl  https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-linux-amd64.tar.gz > /var/tmp/helm.tar.gz
     tar -zxvf /var/tmp/helm.tar.gz  --strip-components=1 -C /usr/local/bin
     helm init
